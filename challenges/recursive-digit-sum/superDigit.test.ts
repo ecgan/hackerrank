@@ -16,3 +16,7 @@ test('Example 3', () => {
 test('Single digit with repeat 1', () => {
   expect(superDigit('5', 1)).toBe(5)
 })
+
+test('10 digit n with maximum k at 100000', () => {
+  expect(superDigit('1234567890', 100000)).toBe(9)
+})
