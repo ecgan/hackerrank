@@ -1,21 +1,23 @@
-import { sortedIndex } from 'lodash';
+import { Heap } from './Heap'
 
 function cookies(k: number, A: number[]): number {
-    const sorted = [...A].sort((a, b) => a - b)
+    const heap = new Heap<number>((a, b) => a - b)
+    A.forEach((el) => {
+        heap.insert(el)
+    })
 
     let iterations = 0
-    while (sorted.length >= 2 && sorted[0] < k) {
-        const a = sorted.shift() as number
-        const b = sorted.shift() as number
+    while (heap.array.length >= 2 && heap.array[0] < k) {
+        const a = heap.remove() as number
+        const b = heap.remove() as number
 
-        const newCookie = a + (2 * b)
-        const newIndex = sortedIndex(sorted, newCookie)
-        sorted.splice(newIndex, 0, newCookie)
+        const c = a + (2 * b)
+        heap.insert(c)
 
         iterations++
     }
 
-    return sorted[0] < k ? -1 : iterations
+    return heap.array[0] < k ? -1 : iterations
 }
 
 export { cookies };
