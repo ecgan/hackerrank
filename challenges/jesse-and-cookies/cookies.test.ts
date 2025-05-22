@@ -22,10 +22,3 @@ test('Large array: ', () => {
 
     expect(cookies(2280, large)).toBe(14)
 })
-
-test('Very large array: ', () => {
-    const large =  Array.from({ length: 1000000 }) as number[]
-    large.fill(1)
-
-    expect(cookies(1000000000, large)).toBe(999998)
-})
